@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'mariadb',
-	'username' => 'hpcustomer_app',
-	'password' => '8ODD9wh7fU',
-	'database' => 'hpcustomer',
+	'hostname' => getenv('DATABASE_SERVER', true) ?: getenv('DATABASE_SERVER'),
+	'username' => getenv('DATABASE_USER', true) ?: getenv('DATABASE_USER'),
+	'password' => getenv('DATABASE_PASSWORD', true) ?: getenv('DATABASE_PASSWORD'),
+	'database' => getenv('DATABASE_NAME', true) ?: getenv('DATABASE_NAME'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
