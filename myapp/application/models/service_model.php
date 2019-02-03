@@ -199,5 +199,4 @@ class Service_model extends MY_Model
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
-
 }

@@ -57,7 +57,6 @@ class User_model extends MY_Model
         return $this->isActive == 0;
     }
 
-
     /**
      * guidV4 ()
      * -------------------------------------------------------------------

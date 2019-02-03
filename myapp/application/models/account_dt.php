@@ -15,7 +15,6 @@ class Account_dt extends Account_model implements DatatableModel
     }
 
 
-
     public function joinArray(){
         return NULL;
     }

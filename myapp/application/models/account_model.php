@@ -83,7 +83,6 @@ class Account_model extends CI_Model
     }
 
     public function getSourceCodeList($search){
-
         //SELECT sourceCode FROM customer WHERE sourceCode like :sourceCode GROUP BY sourceCode ORDER BY sourceCode
         $this->db->select("TRIM(sourceCode) as sourceCode");
         $this->db->group_by('sourceCode');
