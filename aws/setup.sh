@@ -23,13 +23,13 @@ grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
 #Allow Database variable from environment
 echo '' > /opt/bitnami/php/etc/environment_app.conf
-echo 'env[DATABASE_SERVER] = $DATABASE_SERVER' >> /opt/bitnami/php/etc/environment.conf
-echo 'env[DATABASE_NAME] = $DATABASE_NAME' >> /opt/bitnami/php/etc/environment.conf
-echo 'env[DATABASE_USER] = $DATABASE_USER' >> /opt/bitnami/php/etc/environment.conf
-echo 'env[DATABASE_PASSWORD] = $DATABASE_PASSWORD' >> /opt/bitnami/php/etc/environment.conf
+echo 'env[DATABASE_SERVER] = $DATABASE_SERVER' >> /opt/bitnami/php/etc/environment_app.conf
+echo 'env[DATABASE_NAME] = $DATABASE_NAME' >> /opt/bitnami/php/etc/environment_app.conf
+echo 'env[DATABASE_USER] = $DATABASE_USER' >> /opt/bitnami/php/etc/environment_app.conf
+echo 'env[DATABASE_PASSWORD] = $DATABASE_PASSWORD' >> /opt/bitnami/php/etc/environment_app.conf
 
 LINE='include=/opt/bitnami/php/etc/environment_app.conf'
-FILE=/opt/bitnami/php/etc/environment_app.conf
+FILE=/opt/bitnami/php/etc/environment.conf
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
 
