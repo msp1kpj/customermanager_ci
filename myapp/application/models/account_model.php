@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Account_Model extends CI_Model
+class Account_model extends CI_Model
 {
     public $customerId = 0;
 	public $firstName = "";
@@ -14,7 +14,7 @@ class Account_Model extends CI_Model
 	public $sourceCode = "";
     public $notes = "";
 
-    public function __toString() 
+    public function __toString()
     {
         return $this->firstname . " " . $this->lastname;
     }
@@ -43,7 +43,7 @@ class Account_Model extends CI_Model
             ->from("customer c1")
             ->limit($length, $start)
             ->get();
-        
+
         return $query->result('Account_Model');
     }
 
@@ -86,10 +86,10 @@ class Account_Model extends CI_Model
 
         //SELECT sourceCode FROM customer WHERE sourceCode like :sourceCode GROUP BY sourceCode ORDER BY sourceCode
         $this->db->select("TRIM(sourceCode) as sourceCode");
-        $this->db->group_by('sourceCode'); 
-        $this->db->order_by('sourceCode'); 
-        $this->db->where("trim(sourceCode) != '' "); 
-        $this->db->like('sourceCode', $search); 
+        $this->db->group_by('sourceCode');
+        $this->db->order_by('sourceCode');
+        $this->db->where("trim(sourceCode) != '' ");
+        $this->db->like('sourceCode', $search);
         $query = $this->db->get("customer");
 
         return $query->result();
@@ -99,9 +99,9 @@ class Account_Model extends CI_Model
 
         //SELECT city FROM customer WHERE city like :city GROUP BY city ORDER BY city
         $this->db->select("city");
-        $this->db->group_by('city'); 
-        $this->db->order_by('city'); 
-        $this->db->like('city', $search); 
+        $this->db->group_by('city');
+        $this->db->order_by('city');
+        $this->db->like('city', $search);
         $query = $this->db->get("customer");
 
         return $query->result();
@@ -111,9 +111,9 @@ class Account_Model extends CI_Model
 
         //SELECT GROUP_CONCAT(DISTINCT technician ORDER BY technician SEPARATOR ',') AS technician FROM service WHERE technician like :technician
         $this->db->select("GROUP_CONCAT(DISTINCT technician ORDER BY technician SEPARATOR ',') AS technician");
-        $this->db->order_by('technician'); 
-        $this->db->where("trim(technician) != '' "); 
-        $this->db->like('technician', $search); 
+        $this->db->order_by('technician');
+        $this->db->where("trim(technician) != '' ");
+        $this->db->like('technician', $search);
         $query = $this->db->get("service");
 
         return $query->result();
@@ -121,9 +121,9 @@ class Account_Model extends CI_Model
 
     public function getServiceList($search){
         $this->db->select("GROUP_CONCAT(DISTINCT description ORDER BY description SEPARATOR ',') AS description");
-        $this->db->order_by('description'); 
-        $this->db->where("trim(description) != '' "); 
-        $this->db->like('description', $search); 
+        $this->db->order_by('description');
+        $this->db->where("trim(description) != '' ");
+        $this->db->like('description', $search);
         $query = $this->db->get("service");
 
         return $query->result();
@@ -165,7 +165,7 @@ class Account_Model extends CI_Model
 					OR (technician != 'Service Call' AND dateOfService <= ?))
 				ORDER BY customerId, dateOfService desc
 				LIMIT 9999999
-			) as a 
+			) as a
 				JOIN (SELECT @prev := NULL, @rn := 0) AS vars
 			) as tmpservice
             WHERE rownumb <= 5";

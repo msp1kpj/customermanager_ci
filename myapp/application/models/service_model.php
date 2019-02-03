@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Service_Model extends MY_Model
+class Service_model extends MY_Model
 {
     public $table = 'service';
     public $primaryKey = 'serviceId';
-    
+
     public $serviceId = 0;
     public $customerId = 0;
     public $dateOfService = "";
@@ -30,7 +30,7 @@ class Service_Model extends MY_Model
             ->where("customerId", $customerId)
             ->limit($start, $length)
             ->get();
-        
+
         return $query->result_array();
     }
 
@@ -46,7 +46,7 @@ class Service_Model extends MY_Model
         $customers = [];
 
         $start = new DateTime($month);
-        
+
         if(!$this->validateDate($month, "Y-m-d"))
         {
             $month = date('Y-m-01');
@@ -56,7 +56,7 @@ class Service_Model extends MY_Model
         $end = clone($start);
         $end->modify("first day of this month");
         $end->modify("+1 months");
-        
+
         $this->db
             ->distinct(TRUE)
             ->select("c1.customerId
@@ -77,7 +77,7 @@ class Service_Model extends MY_Model
             ->order_by("c1.lastName")
             ->order_by("c1.firstName")
             ->order_by("c1.customerId");
-            
+
         if($type == "called"){
             $this->db->where("s3.nextServiceDate IS NOT NULL");
         } elseif($type == "nocall"){
@@ -99,7 +99,7 @@ class Service_Model extends MY_Model
 					OR (technician != 'Service Call' AND dateOfService <= ?))
 				ORDER BY customerId, dateOfService desc
 				LIMIT 9999999
-			) as a 
+			) as a
 				JOIN (SELECT @prev := NULL, @rn := 0) AS vars
 			) as tmpservice
             WHERE rownumb <= 5";
@@ -112,8 +112,8 @@ class Service_Model extends MY_Model
         }
 
         $results_customers = null;
-        
-        
+
+
         return $customers;
     }
 
@@ -122,7 +122,7 @@ class Service_Model extends MY_Model
         $customers = [];
 
         $start = new DateTime($month);
-        
+
         if(!$this->validateDate($month, "Y-m-d"))
         {
             $month = date('Y-m-01');
@@ -142,7 +142,7 @@ class Service_Model extends MY_Model
 				and c1.phone != '6514510001'
 			ORDER BY dateOfService, lastName, firstName
          */
-        
+
         $results_customers = $this->db
             ->distinct(TRUE)
             ->select("c1.customerId
@@ -176,7 +176,7 @@ class Service_Model extends MY_Model
 					OR (technician != 'Service Call' AND dateOfService <= ?))
 				ORDER BY customerId, dateOfService desc
 				LIMIT 9999999
-			) as a 
+			) as a
 				JOIN (SELECT @prev := NULL, @rn := 0) AS vars
 			) as tmpservice
             WHERE rownumb <= 5";
@@ -189,11 +189,11 @@ class Service_Model extends MY_Model
         }
 
         $results_customers = null;
-        
-        
+
+
         return $customers;
     }
-    
+
     function validateDate($date, $format = 'Y-m-d H:i:s')
     {
         $d = DateTime::createFromFormat($format, $date);
