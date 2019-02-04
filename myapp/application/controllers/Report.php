@@ -118,7 +118,7 @@ class Report extends CI_Controller
 
 
     public function monthlist(){
-
+        $this->output->enable_profiler(false);
         $json = array("options" => array());
 
         $start = new DateTime('now');
@@ -136,6 +136,7 @@ class Report extends CI_Controller
     }
 
     public function monthlistdata(){
+        $this->output->enable_profiler(false);
         $json = array();
 
         $start = new DateTime('now');
@@ -156,17 +157,19 @@ class Report extends CI_Controller
         $this->db->group_by(array('ServiceCallYear', 'ServiceCallMonth'));
         $this->db->order_by('ServiceCallYear');
         $this->db->order_by('ServiceCallMonth');
+        */
         $query = $this->db->get();
         $rows = $query->result_array();
         foreach($rows as &$r) {
             array_push($json, array("date" => $r['ServiceCallDate'], 'totalCall' => (int)$r['CALLS'], 'totalCalled' => (int)$r['CALLED'], 'totalNotCalled' => ((int)$r['CALLS'] - (int)$r['CALLED'])));
         }
-*/
+
         $this->output->set_content_type('application/json')->set_output(json_encode($json));
     }
 
     public function customersnophone(){
-                $json = array("counts" => 0, "customers" => array());
+        $this->output->enable_profiler(false);
+        $json = array("counts" => 0, "customers" => array());
 
         $this->db->distinct(TRUE);
         $this->db->select("count(*) as customers");
@@ -196,7 +199,9 @@ class Report extends CI_Controller
     }
 
     public function customersnoservice(){
-                $json = array("counts" => 0, "customers" => array());
+        $this->output->enable_profiler(false);
+
+        $json = array("counts" => 0, "customers" => array());
         $start = new DateTime('now');
 
         /*
@@ -244,7 +249,9 @@ class Report extends CI_Controller
 
 
     public function calldata(){
-                $json = array();
+        $this->output->enable_profiler(false);
+
+        $json = array();
         $start = new DateTime('now');
         $start->modify('first day of January')->modify('-1 year');
 
