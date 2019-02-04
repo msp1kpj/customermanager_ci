@@ -137,13 +137,13 @@ class Report extends CI_Controller
 
     public function monthlistdata(){
         $json = array();
-/*
+
         $start = new DateTime('now');
         $start->modify('first day of this month')->modify('-1 month');
 
         $end = clone($start);
         $end->modify('+3 months')->modify('-1 days');
-
+        /*
         $this->db->select("COUNT(DISTINCT c1.customerId) AS CALLS , month(s1.dateOfService) ServiceCallMonth , year(s1.dateOfService) ServiceCallYear,
             STR_TO_DATE(CONCAT(month(s1.dateOfService), '/01/', year(s1.dateOfService)), '%m/%d/%Y') as ServiceCallDate, COUNT(s2.customerId) as CALLED");
         $this->db->from("service as s1");

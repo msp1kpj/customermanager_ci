@@ -16,7 +16,7 @@ echo 'DATABASE_USER=root' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'export DATABASE_USER' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'DATABASE_PASSWORD=$db_pass' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'export DATABASE_PASSWORD' >> /opt/bitnami/scripts/setenv_app.sh
-echo 'CI_ENV=production' >> /opt/bitnami/scripts/setenv_app.sh
+echo 'CI_ENV=development' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'export CI_ENV' >> /opt/bitnami/scripts/setenv_app.sh
 
 
