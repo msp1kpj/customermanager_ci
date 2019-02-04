@@ -4,6 +4,7 @@ cd /tmp/customermanager_ci/
 sudo rm -rf /opt/bitnami/apache2/htdocs/*
 sudo cp -R ./myapp/* /opt/bitnami/apache2/htdocs/
 sudo cp ./php/bitnami-apps-vhosts.conf /opt/bitnami/apache2/conf/bitnami/bitnami-apps-vhosts.conf
+sudo cp ./mysql/my.app.cnf /opt/bitnami/mysql/bitnami/my.app.cnf
 
 echo '' > /opt/bitnami/scripts/setenv_app.sh
 echo '#### Application Environment Variables ####' >> /opt/bitnami/scripts/setenv_app.sh
@@ -37,4 +38,8 @@ LINE='include=/opt/bitnami/php/etc/environment_app.conf'
 FILE=/opt/bitnami/php/etc/environment.conf
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
+
+LINE='include /opt/bitnami/mysql/bitnami/my.app.cnf'
+FILE=/opt/bitnami/mysql/my.cnf
+grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
