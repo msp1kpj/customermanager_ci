@@ -39,7 +39,7 @@ FILE=/opt/bitnami/php/etc/environment.conf
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
 
-LINE='include /opt/bitnami/mysql/bitnami/my.app.cnf'
+LINE='!include /opt/bitnami/mysql/bitnami/my.app.cnf'
 FILE=/opt/bitnami/mysql/my.cnf
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 
