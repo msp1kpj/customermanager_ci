@@ -144,7 +144,7 @@ class Report extends CI_Controller
 
         $end = clone($start);
         $end->modify('+3 months')->modify('-1 days');
-        /*
+
         $this->db->select("COUNT(DISTINCT c1.customerId) AS CALLS , month(s1.dateOfService) ServiceCallMonth , year(s1.dateOfService) ServiceCallYear,
             STR_TO_DATE(CONCAT(month(s1.dateOfService), '/01/', year(s1.dateOfService)), '%m/%d/%Y') as ServiceCallDate, COUNT(s2.customerId) as CALLED");
         $this->db->from("service as s1");
@@ -157,7 +157,7 @@ class Report extends CI_Controller
         $this->db->group_by(array('ServiceCallYear', 'ServiceCallMonth'));
         $this->db->order_by('ServiceCallYear');
         $this->db->order_by('ServiceCallMonth');
-        */
+
         $query = $this->db->get();
         $rows = $query->result_array();
         foreach($rows as &$r) {
