@@ -118,7 +118,6 @@ class Report extends CI_Controller
 
 
     public function monthlist(){
-        $this->output->enable_profiler(false);
 
         $json = array("options" => array());
 
@@ -137,7 +136,6 @@ class Report extends CI_Controller
     }
 
     public function monthlistdata(){
-        $this->output->enable_profiler(false);
         $json = array();
 
         $start = new DateTime('now');
@@ -168,8 +166,7 @@ class Report extends CI_Controller
     }
 
     public function customersnophone(){
-        $this->output->enable_profiler(false);
-        $json = array("counts" => 0, "customers" => array());
+                $json = array("counts" => 0, "customers" => array());
 
         $this->db->distinct(TRUE);
         $this->db->select("count(*) as customers");
@@ -199,8 +196,7 @@ class Report extends CI_Controller
     }
 
     public function customersnoservice(){
-        $this->output->enable_profiler(false);
-        $json = array("counts" => 0, "customers" => array());
+                $json = array("counts" => 0, "customers" => array());
         $start = new DateTime('now');
 
         /*
@@ -248,8 +244,7 @@ class Report extends CI_Controller
 
 
     public function calldata(){
-        $this->output->enable_profiler(false);
-        $json = array();
+                $json = array();
         $start = new DateTime('now');
         $start->modify('first day of January')->modify('-1 year');
 
