@@ -3,6 +3,7 @@
 cd /tmp/customermanager_ci/
 sudo rm -rf /opt/bitnami/apache2/htdocs/*
 sudo cp -R ./myapp/* /opt/bitnami/apache2/htdocs/
+sudo cp ./php/bitnami-apps-vhosts.conf /opt/bitnami/apache2/conf/bitnami/bitnami-apps-vhosts.conf
 
 echo '' > /opt/bitnami/scripts/setenv_app.sh
 echo '#### Application Environment Variables ####' >> /opt/bitnami/scripts/setenv_app.sh
