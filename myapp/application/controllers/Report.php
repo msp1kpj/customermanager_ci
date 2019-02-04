@@ -137,7 +137,7 @@ class Report extends CI_Controller
 
     public function monthlistdata(){
         $json = array();
-
+/*
         $start = new DateTime('now');
         $start->modify('first day of this month')->modify('-1 month');
 
@@ -161,7 +161,7 @@ class Report extends CI_Controller
         foreach($rows as &$r) {
             array_push($json, array("date" => $r['ServiceCallDate'], 'totalCall' => (int)$r['CALLS'], 'totalCalled' => (int)$r['CALLED'], 'totalNotCalled' => ((int)$r['CALLS'] - (int)$r['CALLED'])));
         }
-
+*/
         $this->output->set_content_type('application/json')->set_output(json_encode($json));
     }
 
