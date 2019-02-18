@@ -38,6 +38,8 @@ echo 'env[DATABASE_NAME] = $DATABASE_NAME' >> /opt/bitnami/php/etc/environment_a
 echo 'env[DATABASE_USER] = $DATABASE_USER' >> /opt/bitnami/php/etc/environment_app.conf
 echo 'env[DATABASE_PASSWORD] = $DATABASE_PASSWORD' >> /opt/bitnami/php/etc/environment_app.conf
 echo 'env[CI_ENV] = $CI_ENV' >> /opt/bitnami/php/etc/environment_app.conf
+echo 'env[SENDER_EMAIL] = $SENDER_EMAIL' >> /opt/bitnami/php/etc/environment_app.conf
+echo 'env[SENDER_PASSWORD] = $SENDER_PASSWORD' >> /opt/bitnami/php/etc/environment_app.conf
 
 LINE='include=/opt/bitnami/php/etc/environment_app.conf'
 FILE=/opt/bitnami/php/etc/environment.conf
