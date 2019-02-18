@@ -20,7 +20,11 @@ a:link:after,a:visited:after{content:"";font-size:100%}
     body {
         width:100%;
         height:100%;
-        -webkit-transform: rotate(-90deg) scale(.68,.68); 
+        -webkit-transform: rotate(-90deg) scale(.68,.68);
         -moz-transform:rotate(-90deg) scale(.58,.58)
+    }
+
+    #codeigniter_profiler {
+        display: none;
     }
 }

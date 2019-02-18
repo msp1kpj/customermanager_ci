@@ -57,6 +57,7 @@ class Report extends CI_Controller
 
         $data['pageTitle'] = "Report Dashboard";
         $data['currentUser'] = $this->getCurrentUser();
+        $this->load->helper('phone_helper');
 
         if($type == "nocall"){
             $data['pageTitle'] = $data['pageTitle'] . " - Not Called List";

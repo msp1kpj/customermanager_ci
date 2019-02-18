@@ -100,6 +100,8 @@ class Security extends CI_Controller
     public function sendpassword(){
 
         $this->load->library('form_validation');
+        $this->load->library('encrypt');
+        $this->load->library('email');
 
         $this->form_validation->set_rules('email', 'Email Address', 'trim|required');
 
@@ -109,29 +111,21 @@ class Security extends CI_Controller
             $this->session->set_flashdata('emailaddress', $email);
             $checkuser = $this->user_model->findByAttributes(array("emailAddress"=>$email, "isActive"=>1));
 
-            if(isset($checkuser)){
-                $config = Array(
-                    'protocol' => 'smtp',
-                    'smtp_host' => 'ssl://smtp.googlemail.com',
-                    'smtp_port' => 465,
-                    'smtp_user' => 'xxx',
-                    'smtp_pass' => 'xxx',
-                    'mailtype'  => 'html',
-                    'charset'   => 'iso-8859-1'
-                );
-
-
-                $this->load->library('email', $config);
-
-                $this->email->from('no-reply@homeplacefurnace.com', 'No Reply');
+            if(isset($checkuser) && $checkuser->pkid){
+                $this->session->set_flashdata('emailaddress', $email);
+                $this->email->from($this->config->item('smtp_user'), 'no-reply');
                 $this->email->to($email);
 
                 $this->email->subject('Password Recovery');
                 $this->email->message('Contact your system administrator to get a new password.');
 
-                $this->email->send();
+                log_message('info', 'Password reset email was sent to '.$email);
 
-                $this->session->set_flashdata('message', array("class"=>"info", "message"=>"Successfully send"));
+                if ($this->email->send()) {
+                    $this->session->set_flashdata('message', array("class"=>"info", "message"=>"Successfully send"));
+                } else {
+                    $this->session->set_flashdata('message', array("class"=>"danger", "message"=>$this->email->print_debugger()));
+                }
             } else {
                 $this->session->set_flashdata('message', array("class"=>"danger", "message"=>"User not found"));
             }

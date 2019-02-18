@@ -17,10 +17,15 @@ div .modal-backdrop.show:nth-of-type(even) {
     z-index: 1051 !important;
 }
 
+#calllog {transform: rotateX(0deg);table-layout: fixed;width:100%}
+
 @media print{
     @page {size: letter landscape;max-height:100%; max-width:100%}
     body {
         width:100%;
         height:100%;
+    }
+    #codeigniter_profiler {
+        display: none;
     }
 }

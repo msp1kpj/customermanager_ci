@@ -119,8 +119,7 @@
 		<td class="d-none d-sm-table-cell"><a title="Customers with no furture serivce call date" href="/report/calllog?month=${YYYY-MM-DD}&type=nocall">${totalNotCalled}</a></td>
 		<td width="75px">
 			<div class="btn-group pull-right">
-				<a class="btn btn-secondary" href="/report/calllog?month=${YYYY-MM-DD}"><i class="fas fa-list"></i></a>
-				<a class="btn btn-secondary" href="/report/calllogprint?month=${YYYY-MM-DD}"><i class="fas fa-print"></i></a>
+				<a class="btn btn-secondary" href="/report/calllog?month=${YYYY-MM-DD}"><i class="fas fa-print"></i></a>
 			</div>
 		</td>
 	</tr>

@@ -37,21 +37,21 @@
             </div>
         </h4>
     </div>
-    <table class="table table-striped table-bordered table-sm mb-0">
+    <table id="calllog" class="table table-striped table-bordered table-sm mb-0">
         <tr class="subheader1">
-            <th class="subheader1" width="100px" style="" >Name</th>
-            <th class="subheader1" >Address</th>
-            <th class="subheader1" width="165px">City</th>
-            <th class="subheader1" width="100px">Phone</th>
+            <th width="200px" style="" >Name</th>
+            <th>Address</th>
+            <th width="165px">City</th>
+            <th width="130px">Phone</th>
         </tr>
-        <?php foreach ($customers as $key => $customer) { ?> 
+        <?php foreach ($customers as $key => $customer) { ?>
         <tr class="content1" >
-            <th width="200px" class="content1" rowspan="2">
+            <th rowspan="2">
                 <a href="/account/<?php echo($customer["customerId"]) ?>" target="_blank"><?php echo($customer["lastName"] . ", " . $customer["firstName"]) ?></a>
             </th>
-                <th class="content1" ><a href="/account/<?php echo($customer["customerId"]) ?>" target="_blank"><?php echo($customer["address"]) ?></a></th>
-            <th class="content1" ><?php echo($customer["city"]) ?></th>
-            <th class="content1 text-right"><?php echo(($customer["phone"])); ?></th>
+                <th><a href="/account/<?php echo($customer["customerId"]) ?>" target="_blank"><?php echo($customer["address"]) ?></a></th>
+            <th><?php echo($customer["city"]) ?></th>
+            <th class="text-right"><?php echo(formatPhoneNumber($customer["phone"])); ?></th>
         </tr>
         <tr>
             <td colspan="3">
@@ -64,17 +64,17 @@
                         <th>Notes</th>
                     </tr>
                     <?php foreach ($customer["services"] as $key => $service) { ?>
-                    <tr>
-                        <td class="content2"><?php echo($service["dateOfService"]) ?></td>
-                        <td class="content2"><?php echo($service["description"]) ?></td>
-                        <td class="content2"><?php echo($service["amount"]) ?></td>
-                        <td class="content2"><?php echo($service["technician"]) ?></td>
-                        <td class="content2"><?php echo($service["note"]) ?></td>
+                    <tr class="content2">
+                        <td><?php echo($service["dateOfService"]) ?></td>
+                        <td><?php echo($service["description"]) ?></td>
+                        <td><?php echo($service["amount"]) ?></td>
+                        <td><?php echo($service["technician"]) ?></td>
+                        <td><?php echo($service["note"]) ?></td>
                     </tr>
                     <?php } ?>
                 </table>
             </td>
-        </tr>   
+        </tr>
         <?php } ?>
     </table>
 

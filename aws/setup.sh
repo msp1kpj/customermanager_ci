@@ -5,6 +5,8 @@ sudo rm -rf /opt/bitnami/apache2/htdocs/*
 sudo cp -R ./myapp/* /opt/bitnami/apache2/htdocs/
 sudo cp ./php/bitnami-apps-vhosts.conf /opt/bitnami/apache2/conf/bitnami/bitnami-apps-vhosts.conf
 sudo cp ./mysql/my.app.cnf /opt/bitnami/mysql/bitnami/my.app.cnf
+#sudo /opt/bitnami/php/bin/pear install pear/Net_SMTP pear/Mail-1.2.0
+#sudo apt-get install sendmail
 
 echo '' > /opt/bitnami/scripts/setenv_app.sh
 echo '#### Application Environment Variables ####' >> /opt/bitnami/scripts/setenv_app.sh
@@ -19,7 +21,10 @@ echo 'DATABASE_PASSWORD=$db_pass' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'export DATABASE_PASSWORD' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'CI_ENV=production' >> /opt/bitnami/scripts/setenv_app.sh
 echo 'export CI_ENV' >> /opt/bitnami/scripts/setenv_app.sh
-
+echo "SENDER_EMAIL=$SENDER_EMAIL" >> /opt/bitnami/scripts/setenv_app.sh
+echo 'export SENDER_EMAIL' >> /opt/bitnami/scripts/setenv_app.sh
+echo "SENDER_PASSWORD=$SENDER_PASSWORD" >> /opt/bitnami/scripts/setenv_app.sh
+echo 'export SENDER_PASSWORD' >> /opt/bitnami/scripts/setenv_app.sh
 
 LINE='. /opt/bitnami/scripts/setenv_app.sh'
 FILE=/opt/bitnami/scripts/setenv.sh
@@ -42,4 +47,3 @@ grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 LINE='!include /opt/bitnami/mysql/bitnami/my.app.cnf'
 FILE=/opt/bitnami/mysql/my.cnf
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
-

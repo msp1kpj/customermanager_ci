@@ -1,3 +1,5 @@
 mariadb-persistence
 docker-compose.yml
 myapp/ci_sessions/
+aws/aws_depolyment.sh
+myapp/application/logs/*.php
